@@ -1,0 +1,21 @@
+<h1>Nueva imagen de servidor</h1>
+
+<div class="row">
+  <div class="col-6">
+    <% form_for(@server_image, '/server_images') do |f| %>
+      <%= f.error_messages %>
+
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :ami_id %>
+        <%= f.text_field :ami_id, class: "form-control" %>
+      </div>
+
+      <%= f.submit 'Crear', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>
