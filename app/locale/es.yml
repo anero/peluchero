@@ -1,0 +1,16 @@
+es:
+  activerecord:
+    attributes:
+      server:
+        instance_id: ID de instancia
+        status: Estado
+        instance_type: Tipo de instancia
+        security_group: Security group
+        public_ip: IP pública
+    server:
+      statuses:
+        not_launched: Pendiente de lanzar
+        launching: Lanzando
+        running: Corriendo
+        stopped: Parada
+        terminated: Terminada

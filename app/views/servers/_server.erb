@@ -1,6 +1,7 @@
 <tr>
-  <td><%= server.instance_id %></td>
   <td><%= server.server_image.name %></td>
-  <td><%= server.status %></td>
+  <td><%= t("activerecord.server.statuses.#{server.status}") %></td>
   <td><%= format_date(server.updated_at) %></td>
+  <td><%= format_server_public_ip(server.public_ip) %></td>
+  <td><%= server.instance_id %></td>
 </tr>

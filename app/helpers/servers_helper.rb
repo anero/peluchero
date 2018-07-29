@@ -13,6 +13,10 @@ module Peluchero
       def instance_type_options
         [ 't2.micro', 't2.small', 't2.medium', 't2.large', 't2.xlarge' ]
       end
+
+      def format_server_public_ip(public_ip)
+        public_ip || 'No asignada aún'
+      end
     end
 
     helpers ServersHelper

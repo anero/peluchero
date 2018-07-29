@@ -19,7 +19,9 @@ Peluchero::App.controllers :servers do
     )
 
     if resp.instances.count == 1
-      @server.instance_id = resp.instances.first.instance_id
+      instance = resp.instances.first
+      @server.instance_id = instance.instance_id
+      @server.status = 'launching'
       @server.save!
       redirect '/', success: 'El servidor se lanzó correctamente'
     else
