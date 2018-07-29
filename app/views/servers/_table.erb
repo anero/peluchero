@@ -1,0 +1,17 @@
+<% if servers.empty? %>
+  <p class="text-left">No hay ningún servidor corriendo.</p>
+<% else %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID de instancia</th>
+        <th>Nombre de imagen</th>
+        <th>Estado</th>
+        <th>Última actualización</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= partial 'servers/item', collection: servers %>
+    </tbody>
+  </table>
+<% end %>
