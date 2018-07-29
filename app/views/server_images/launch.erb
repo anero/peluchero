@@ -1,0 +1,21 @@
+<h1>Crear nuevo servidor con la imagen '<%= @server_image.name %>'</h1>
+<div class="row">
+  <div class="col-6">
+    <% form_for(@server, url_for(:servers, :launch)) do |f| %>
+      <%= f.error_messages %>
+
+      <%= f.hidden_field :server_image_id %>
+      <div class="form-group">
+        <%= f.label :instance_type %>
+        <%= f.select :instance_type, options: instance_type_options, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :security_group %>
+        <%= f.select :security_group, options: security_group_options, class: "form-control" %>
+      </div>
+
+      <%= f.submit 'Lanzar', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

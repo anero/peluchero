@@ -14,13 +14,28 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.4)
+    aws-eventstream (1.0.1)
+    aws-partitions (1.96.0)
+    aws-sdk-core (3.22.1)
+      aws-eventstream (~> 1.0)
+      aws-partitions (~> 1.0)
+      aws-sigv4 (~> 1.0)
+      jmespath (~> 1.0)
+    aws-sdk-ec2 (1.40.0)
+      aws-sdk-core (~> 3)
+      aws-sigv4 (~> 1.0)
+    aws-sigv4 (1.0.3)
     builder (3.2.3)
     byebug (10.0.2)
     concurrent-ruby (1.0.5)
     daemons (1.2.6)
+    dotenv (2.5.0)
     eventmachine (1.2.7)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
+    i18n-active_record (0.2.2)
+      i18n (>= 0.5.0)
+    jmespath (1.4.0)
     mail (2.7.0)
       mini_mime (>= 0.1.1)
     mime-types (2.99.3)
@@ -84,7 +99,10 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord (~> 4)
+  aws-sdk-ec2 (~> 1)
   byebug
+  dotenv
+  i18n-active_record
   padrino (= 0.14.3)
   pg (~> 0.18)
   rake

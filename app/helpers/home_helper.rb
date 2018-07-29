@@ -3,9 +3,9 @@
 module Peluchero
   class App
     module HomeHelper
-      # def simple_helper_method
-      # ...
-      # end
+      def format_date(date)
+        I18n.l(date.in_time_zone(Time.zone), format: :short)
+      end
     end
 
     helpers HomeHelper

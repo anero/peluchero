@@ -7,3 +7,5 @@ vendor/gems/*
 db/*.db
 .*.sw*
 .byebug_history
+.env*
+!.env.sample

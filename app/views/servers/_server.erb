@@ -2,5 +2,5 @@
   <td><%= server.instance_id %></td>
   <td><%= server.server_image.name %></td>
   <td><%= server.status %></td>
-  <td><%= I18n.l(server.updated_at) %></td>
+  <td><%= format_date(server.updated_at) %></td>
 </tr>

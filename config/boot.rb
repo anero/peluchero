@@ -6,11 +6,16 @@ PADRINO_ROOT = File.expand_path('../..', __FILE__) unless defined?(PADRINO_ROOT)
 require 'bundler/setup'
 Bundler.require(:default, RACK_ENV)
 
+require 'dotenv'
+Dotenv.load
+
+Dotenv.load ".env.#{Padrino.env}", '.env'
+
 ##
 # ## Enable devel logging
 #
-# Padrino::Logger::Config[:development][:log_level]  = :devel
-# Padrino::Logger::Config[:development][:log_static] = true
+Padrino::Logger::Config[:development][:log_level]  = :devel
+Padrino::Logger::Config[:development][:log_static] = true
 #
 # ## Configure Ruby to allow requiring features from your lib folder
 #
@@ -22,7 +27,7 @@ Bundler.require(:default, RACK_ENV)
 #
 # ## Configure your I18n
 #
-# I18n.default_locale = :en
+I18n.default_locale = :es
 # I18n.enforce_available_locales = false
 #
 # ## Configure your HTML5 data helpers
@@ -56,6 +61,7 @@ end
 # Add your after (RE)load hooks here
 #
 Padrino.after_load do
+  Time.zone_default = Time.find_zone!("Buenos Aires")
 end
 
 Padrino.load!

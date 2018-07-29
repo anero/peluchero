@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 3) do
+ActiveRecord::Schema.define(version: 4) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,11 +23,13 @@ ActiveRecord::Schema.define(version: 3) do
   end
 
   create_table "servers", force: :cascade do |t|
-    t.string   "instance_id",     null: false
+    t.string   "instance_id"
     t.string   "status"
     t.integer  "server_image_id", null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "instance_type"
+    t.string   "security_group"
   end
 
   create_table "users", force: :cascade do |t|

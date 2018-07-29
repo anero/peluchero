@@ -1,7 +1,7 @@
 class CreateServers < ActiveRecord::Migration
   def self.up
     create_table :servers do |t|
-      t.string :instance_id, null: false
+      t.string :instance_id
       t.string :status
       t.references :server_image, null: false
 
