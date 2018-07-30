@@ -28,4 +28,8 @@ Peluchero::App.controllers :servers do
       Padrino.logger.error("Error al lanzar la instancia EC2: #{resp.inspect}")
     end
   end
+
+  post :refresh do
+    redirect '/'
+  end
 end
