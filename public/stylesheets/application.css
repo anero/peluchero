@@ -4,3 +4,40 @@ body {
 main.container {
   padding: 3rem 1.5rem;
 }
+
+.btn-facebook-login {
+  /*position: relative;*/
+  font: normal 1.1em "Helvetica Neue",Helvetica,Arial,sans-serif;
+  /*line-height: 1em;
+  float: left;*/
+  /*text-transform: none;*/
+  border-radius: 6px;
+  background-color: #315d9b;
+  border-color: #7b9fd4 #5181c5 #315d9b;
+
+  color: #ffffff;
+  text-shadow: rgba(0, 0, 0, 0.25) 0 -1px 0;
+  white-space: nowrap;
+  padding: 10px 20px;
+
+  /*img {
+    position: absolute;
+    bottom: 1px;
+    left: 10px;
+  }
+
+  .logo-separator {
+    position: absolute;
+    top: 0;
+    left: 30px;
+    height: 100%;
+    width: 1px;
+    background-color: #7b9fd4;
+    border-right: solid 1px #315d9b;
+  }*/
+}
+
+.btn-facebook-login:hover {
+  background-color: #315d9b;
+  color: #ffffff;
+}

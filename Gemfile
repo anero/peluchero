@@ -21,6 +21,10 @@ gem 'padrino', '0.14.3'
 # AWS
 gem 'aws-sdk-ec2', '~> 1'
 
+# AuthN
+gem 'omniauth'
+gem 'omniauth-facebook'
+
 group :development do
   gem 'byebug'
 end
