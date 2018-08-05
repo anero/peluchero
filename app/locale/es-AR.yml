@@ -1,4 +1,4 @@
-es:
+es-AR:
   activerecord:
     attributes:
       server:
@@ -9,8 +9,9 @@ es:
         public_ip: IP pública
     server:
       statuses:
-        not_launched: Pendiente de lanzar
-        launching: Lanzando
+        pending: Pendiente de lanzar
         running: Corriendo
-        stopped: Parada
-        terminated: Terminada
+        shutting-down: Terminando
+        stopping: Apagando
+        stopped: Apagado
+        terminated: Terminado

@@ -2,10 +2,11 @@ Peluchero::App.controllers :servers do
 
   post :launch, map: '/servers/launch' do
     @server_image = ServerImage.find(params[:server].delete(:server_image_id))
-    @server = @server_image.servers.build(params[:server].merge(status: 'not_launched'))
+    @server = @server_image.servers.build(params[:server].merge(status: 'pending'))
 
     unless @server.save
-      render 'server_images/launch' and return
+      render 'server_images/launch'
+      return
     end
 
     client = Aws::EC2::Client.new(region: ENV['AWS_REGION'], credentials: Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_SECRET_ACCESS_KEY']))
@@ -21,15 +22,19 @@ Peluchero::App.controllers :servers do
     if resp.instances.count == 1
       instance = resp.instances.first
       @server.instance_id = instance.instance_id
-      @server.status = 'launching'
       @server.save!
+
       redirect '/', success: 'El servidor se lanzó correctamente'
     else
       Padrino.logger.error("Error al lanzar la instancia EC2: #{resp.inspect}")
+
+      render 'server_images/launch'
     end
   end
 
   post :refresh do
-    redirect '/'
+    Server.not_terminated.each {|s| s.refresh_status! }
+
+    redirect '/', success: 'Estado de servidores actualizado'
   end
 end

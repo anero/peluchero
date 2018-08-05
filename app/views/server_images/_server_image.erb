@@ -1,0 +1,6 @@
+<tr>
+  <td><%= server_image.name %></td>
+  <td><%= server_image.ami_id %></td>
+  <td><%= format_date(server_image.created_at) %></td>
+  <td><a class="btn btn-success" href="<%= url(:server_images, :launch, id: server_image.id) %>">Lanzar instancia</a></td>
+</tr>

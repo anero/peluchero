@@ -28,6 +28,9 @@ Padrino::Logger::Config[:development][:log_static] = true
 # ## Configure your I18n
 #
 I18n.default_locale = :es
+I18n.available_locales = [:es, :'es-AR']
+I18n.locale = :'es-AR'
+
 # I18n.enforce_available_locales = false
 #
 # ## Configure your HTML5 data helpers

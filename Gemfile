@@ -10,7 +10,6 @@ gem 'thin'
 # Project requirements
 gem 'rake'
 gem 'dotenv'
-gem 'i18n-active_record', require: 'i18n/active_record'
 
 # Component requirements
 gem 'activerecord', '~> 4', require: 'active_record'

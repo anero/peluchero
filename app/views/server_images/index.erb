@@ -1,0 +1,21 @@
+<div class="row mb-5 float-right">
+  <a class="btn btn-primary" href="<%= url(:server_images, :new) %>">Nueva imagen</a>
+</div>
+
+<% if @server_images.empty? %>
+  <p class="text-left">No hay ninguna imagen registrada.</p>
+<% else %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nombre de imagen</th>
+        <th>AMI ID</th>
+        <th>Fecha creación</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= partial 'server_images/server_image', collection: @server_images %>
+    </tbody>
+  </table>
+<% end %>

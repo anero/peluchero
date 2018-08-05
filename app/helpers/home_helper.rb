@@ -4,7 +4,7 @@ module Peluchero
   class App
     module HomeHelper
       def format_date(date)
-        I18n.l(date.in_time_zone(Time.zone), format: :short)
+        date.in_time_zone(Time.zone).strftime('%k:%M %e/%-m/%Y')
       end
     end
 
