@@ -28,5 +28,11 @@ module Peluchero
     access_control.roles_for :admin do |role|
       role.protect '/'
     end
+
+    unless RACK_ENV == 'development'
+      before do
+        redirect request.url.sub('http', 'https') unless request.secure?
+      end
+    end
   end
 end
