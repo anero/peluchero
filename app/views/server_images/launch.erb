@@ -3,14 +3,21 @@
   <div class="col-6">
     <% form_for(@server, url_for(:servers, :launch)) do |f| %>
       <%= f.error_messages %>
-
       <%= f.hidden_field :server_image_id %>
+
       <div class="form-group">
         <%= f.label :instance_type %>
         <%= f.select :instance_type, options: instance_type_options, class: "form-control" %>
       </div>
 
-      <div class="form-group">
+      <div class="card mb-4">
+        <div class="card-body">
+          Las características y costos de los tipos de instancias están disponibles en
+          la página de <a href="https://aws.amazon.com/es/ec2/pricing/on-demand/?nc1=h_ls">Precios de Amazon EC2</a>
+        </div>
+      </div>
+
+      <div class="form-group mb-5">
         <%= f.label :security_group %>
         <%= f.select :security_group, options: security_group_options, class: "form-control" %>
       </div>

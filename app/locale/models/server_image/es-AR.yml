@@ -1,0 +1,11 @@
+es-AR:
+  models:
+    server_image:
+      name: Imagen de servidor
+      attributes:
+        ami_id: ID de la imagen en Amazon (AMI)
+        instance_type: Tipo de instancia
+        name: Nombre
+        security_group: Security group
+        created_at: Fecha de creación
+        updated_at: Fecha de actualización

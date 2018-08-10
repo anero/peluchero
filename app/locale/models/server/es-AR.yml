@@ -1,13 +1,16 @@
 es-AR:
-  activerecord:
-    attributes:
-      server:
+  models:
+    server:
+      name: Servidor
+      attributes:
         instance_id: ID de instancia
         status: Estado
         instance_type: Tipo de instancia
         security_group: Security group
         public_ip: IP pública
-    server:
+        server_image_id: Imagen
+        created_at: Fecha de creación
+        updated_at: Fecha de actualización
       statuses:
         pending: Pendiente de lanzar
         running: Corriendo
