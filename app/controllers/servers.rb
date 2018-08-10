@@ -37,4 +37,11 @@ Peluchero::App.controllers :servers do
 
     redirect '/', success: 'Estado de servidores actualizado'
   end
+
+  put :terminate, map: '/servers/:id/terminate' do
+    @server = Server.find(params[:id])
+    @server.terminate!
+
+    redirect '/', success: 'Apagando el servidor'
+  end
 end

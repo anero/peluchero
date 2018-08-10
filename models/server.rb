@@ -23,6 +23,10 @@ class Server < ActiveRecord::Base
     save!
   end
 
+  def terminate!
+    resp = aws_client.terminate_instances(instance_ids: [ self.instance_id ])
+  end
+
   def terminated?
     self.status == 'terminated'
   end

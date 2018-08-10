@@ -4,4 +4,13 @@
   <td><%= format_date(server.updated_at) %></td>
   <td><%= format_server_public_ip(server.public_ip) %></td>
   <td><%= server.instance_id %></td>
+  <td>
+    <% unless server.terminated? %>
+      <% form_tag(url(:servers, :terminate, id: server.id), method: 'put') do %>
+        <%= submit_tag 'Terminar', class: "btn btn-danger" %>
+      <% end %>
+    <% else %>
+      <button class="btn btn-danger" disabled="disabled">Terminar</button>
+    <% end %>
+  </td>
 </tr>
