@@ -2,7 +2,13 @@ Peluchero::App.controllers :servers do
 
   post :launch, map: '/servers/launch' do
     @server_image = ServerImage.find(params[:server].delete(:server_image_id))
-    @server = @server_image.servers.build(params[:server].merge(status: 'pending'))
+
+    terminate_at = params[:server].delete(:terminate_at)
+    if terminate_at.present?
+      terminate_at = Chronic.parse(terminate_at, { endian_precedence: [:little, :middle] }) # Parse string as date time to set correct time zone on Time object
+    end
+
+    @server = @server_image.servers.build(params[:server].merge(status: 'pending', terminate_at: terminate_at))
 
     unless @server.save
       render 'server_images/launch'

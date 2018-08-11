@@ -11,6 +11,7 @@ gem 'thin'
 # Project requirements
 gem 'rake'
 gem 'dotenv'
+gem 'chronic'
 
 # Component requirements
 gem 'activerecord', '~> 4', require: 'active_record'

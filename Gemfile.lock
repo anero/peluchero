@@ -27,6 +27,7 @@ GEM
     aws-sigv4 (1.0.3)
     builder (3.2.3)
     byebug (10.0.2)
+    chronic (0.10.2)
     concurrent-ruby (1.0.5)
     daemons (1.2.6)
     dotenv (2.5.0)
@@ -120,6 +121,7 @@ DEPENDENCIES
   activerecord (~> 4)
   aws-sdk-ec2 (~> 1)
   byebug
+  chronic
   dotenv
   omniauth
   omniauth-facebook
@@ -127,6 +129,9 @@ DEPENDENCIES
   pg (~> 0.18)
   rake
   thin
+
+RUBY VERSION
+   ruby 2.5.1p57
 
 BUNDLED WITH
    1.16.3

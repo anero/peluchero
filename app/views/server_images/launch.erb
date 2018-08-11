@@ -22,6 +22,11 @@
         <%= f.select :security_group, options: security_group_options, class: "form-control" %>
       </div>
 
+      <div class="form-group">
+        <%= f.label :terminate_at %>
+        <%= f.text_field :terminate_at, class: 'form-control datetime' %>
+      </div>
+
       <%= f.submit 'Lanzar', class: 'btn btn-primary' %>
     <% end %>
   </div>

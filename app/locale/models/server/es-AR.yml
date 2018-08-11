@@ -9,8 +9,11 @@ es-AR:
         security_group: Security group
         public_ip: IP pública
         server_image_id: Imagen
+        terminate_at: Fecha de terminación
         created_at: Fecha de creación
         updated_at: Fecha de actualización
+      errors:
+        terminate_at_must_be_in_future: La fecha de terminación tiene que ser mayor a la actual
       statuses:
         pending: Pendiente de lanzar
         running: Corriendo
