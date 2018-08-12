@@ -14,15 +14,19 @@ module Peluchero
       provider :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET']
     end
 
-    set :login_page, '/sessions/new'
+    set :login_page, '/users/unauthorized'
     set :admin_model, 'User'
 
     access_control.roles_for :any do |role|
       role.protect '/'
-      role.allow '/sessions'
+      role.allow '/users/unauthorized'
       role.allow '/sessions'
       role.allow '/auth'
-      # role.allow '/health'
+    end
+
+    access_control.roles_for :unauthorized do |role|
+      role.allow '/users/unauthorized'
+      role.allow '/users/pending'
     end
 
     access_control.roles_for :admin do |role|

@@ -14,4 +14,12 @@ class User < ActiveRecord::Base
       user.role = 'unauthorized'
     end
   end
+
+  def pending_approval?
+    self.role == 'unauthorized'
+  end
+
+  def approved?
+    self.role == 'admin'
+  end
 end

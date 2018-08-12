@@ -21,11 +21,13 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbar">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="<%= url(:server_images, :index) %>">Imagenes</a>
-          </li>
-        </ul>
+        <% if current_account.approved? %>
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="<%= url(:server_images, :index) %>">Imagenes</a>
+            </li>
+          </ul>
+        <% end %>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <% form_tag(url(:sessions, :destroy), method: 'delete') do %>
