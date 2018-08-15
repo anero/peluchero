@@ -7,6 +7,11 @@ module Peluchero
         return '' if date.blank?
         date.in_time_zone(Time.zone).strftime('%k:%M %e/%-m/%Y')
       end
+
+      def format_date_for_control(date)
+        return '' if date.blank?
+        date.in_time_zone(Time.zone).strftime('%d/%m/%Y %I:%M %p')
+      end
     end
 
     helpers HomeHelper

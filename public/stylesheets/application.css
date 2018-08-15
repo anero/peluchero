@@ -41,3 +41,7 @@ main.container {
   background-color: #315d9b;
   color: #ffffff;
 }
+
+.field-errors {
+  color: #f00000;
+}
