@@ -13,7 +13,7 @@ Peluchero::App.controllers :server_images do
   post :create do
     @server_image = ServerImage.new(params[:server_image])
     if @server_image.save
-      redirect '/', success: 'Imagen creada exitosamente'
+      redirect url(:server_images, :index), success: 'Imagen creada exitosamente'
     else
       render 'new'
     end
