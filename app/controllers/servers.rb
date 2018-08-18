@@ -18,7 +18,7 @@ Peluchero::App.controllers :servers do
       terminate_at = Chronic.parse(terminate_at, { endian_precedence: [:little, :middle] }) # Parse string as date time to set correct time zone on Time object
     end
 
-    @server = @server_image.servers.build(params[:server].merge(status: 'pending', terminate_at: terminate_at))
+    @server = @server_image.servers.build(params[:server].merge(status: 'pending', terminate_at: terminate_at, launched_by: current_account))
 
     if @server.save
       client = Aws::EC2::Client.new(region: ENV['AWS_REGION'], credentials: Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_SECRET_ACCESS_KEY']))

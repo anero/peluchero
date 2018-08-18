@@ -5,6 +5,7 @@
   <td><%= format_server_public_ip(server.public_ip) %></td>
   <td><%= server.instance_id %></td>
   <td><%= format_datetime(server.terminate_at) %></td>
+  <td><%= server.launched_by&.name %></td>
   <td>
     <% unless server.terminated? %>
       <% form_tag(url(:servers, :terminate, id: server.id), method: 'put') do %>
