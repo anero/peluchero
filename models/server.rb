@@ -46,7 +46,7 @@ class Server < ActiveRecord::Base
   end
 
   def terminate_at_must_be_in_future
-    if self.terminate_at.present? && self.terminate_at < Time.now
+    if self.terminate_at.present? && self.terminate_at.utc < Time.now.utc
       errors[:terminate_at] << I18n.t('models.server.errors.terminate_at_must_be_in_future')
     end
   end
