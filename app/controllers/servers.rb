@@ -1,4 +1,9 @@
 Peluchero::App.controllers :servers do
+  get :index do
+    @servers = Server.all.order('updated_at DESC')
+    render 'servers/index'
+  end
+
   get :launch do
     if params[:server_image_id].blank?
       halt 400, 'Missing server_image_id' and return
@@ -7,7 +12,7 @@ Peluchero::App.controllers :servers do
     @server_image = ServerImage.find(params[:server_image_id])
     @server = Server.new(server_image: @server_image, terminate_at: Time.zone.now + 4.hours)
 
-    render 'launch'
+    render 'servers/launch'
   end
 
   post :launch, map: '/servers/launch' do
@@ -39,10 +44,10 @@ Peluchero::App.controllers :servers do
         redirect '/', success: 'El servidor se lanzó correctamente'
       else
         Padrino.logger.error("Error al lanzar la instancia EC2: #{resp.inspect}")
-        render :launch
+        render 'servers/launch'
       end
     else
-      render :launch
+      render 'servers/launch'
     end
   end
 
