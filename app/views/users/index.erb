@@ -1,0 +1,18 @@
+<% if @users.empty? %>
+  <p class="text-left">No hay ningún usuario registrado.</p>
+<% else %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Rol</th>
+        <th>Fecha de registración</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= partial 'users/user', collection: @users %>
+    </tbody>
+  </table>
+<% end %>

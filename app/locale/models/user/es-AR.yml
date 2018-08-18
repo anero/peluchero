@@ -10,3 +10,6 @@ es-AR:
         updated_at: Updated at
         facebook_id: Facebook
         role: Role
+      roles:
+        unauthorized: Sin autorización
+        admin: Administrador

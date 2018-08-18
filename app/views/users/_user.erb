@@ -1,0 +1,9 @@
+<tr>
+  <td><%= user.name %></td>
+  <td><%= user.email %></td>
+  <td><%= t("models.user.roles.#{user.role}") %></td>
+  <td><%= format_date(user.created_at) %></td>
+  <td>
+    <%= partial 'users/toggle_authorization', locals: {user: user} %>
+  </td>
+</tr>

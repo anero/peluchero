@@ -1,10 +1,10 @@
 <tr>
   <td><%= server.server_image.name %></td>
   <td><%= t("models.server.statuses.#{server.status}") %></td>
-  <td><%= format_date(server.updated_at) %></td>
+  <td><%= format_datetime(server.updated_at) %></td>
   <td><%= format_server_public_ip(server.public_ip) %></td>
   <td><%= server.instance_id %></td>
-  <td><%= format_date(server.terminate_at) %></td>
+  <td><%= format_datetime(server.terminate_at) %></td>
   <td>
     <% unless server.terminated? %>
       <% form_tag(url(:servers, :terminate, id: server.id), method: 'put') do %>

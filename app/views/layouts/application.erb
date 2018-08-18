@@ -22,11 +22,7 @@
 
       <div class="collapse navbar-collapse" id="navbar">
         <% if current_account.approved? %>
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="<%= url(:server_images, :index) %>">Imagenes</a>
-            </li>
-          </ul>
+          <%= partial 'layouts/header_menu' %>
         <% end %>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
