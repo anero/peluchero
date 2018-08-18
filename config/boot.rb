@@ -16,6 +16,9 @@ Dotenv.load ".env.#{Padrino.env}", '.env'
 #
 Padrino::Logger::Config[:development][:log_level]  = :devel
 Padrino::Logger::Config[:development][:log_static] = true
+
+Padrino::Logger::Config[:production][:log_level]  = :info
+
 #
 # ## Configure Ruby to allow requiring features from your lib folder
 #
