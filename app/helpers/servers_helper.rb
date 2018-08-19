@@ -17,6 +17,10 @@ module Peluchero
       def format_server_public_ip(public_ip)
         public_ip || 'No asignada aún'
       end
+
+      def can_be_terminated?(server)
+        Server::NOT_TERMINATED_STATUSES.include?(server.status)
+      end
     end
 
     helpers ServersHelper

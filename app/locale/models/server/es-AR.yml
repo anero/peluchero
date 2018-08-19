@@ -15,6 +15,7 @@ es-AR:
       errors:
         terminate_at_must_be_in_future: La fecha de terminación tiene que ser mayor a la actual
       statuses:
+        error_on_launch: Error al lanzar
         pending: Pendiente de lanzar
         running: Corriendo
         shutting-down: Terminando

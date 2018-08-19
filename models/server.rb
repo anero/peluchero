@@ -1,5 +1,8 @@
 class Server < ActiveRecord::Base
-  STATUSES = %w(pending running shutting-down stopping stopped terminated)
+  class ErrorOnLaunch < StandardError; end;
+
+  STATUSES = %w(pending running shutting-down stopping stopped terminated error_on_launch)
+  NOT_TERMINATED_STATUSES = %w(pending running shutting-down stopping stopped)
 
   belongs_to :server_image
   belongs_to :launched_by, class_name: 'User', foreign_key: 'user_id'
@@ -9,7 +12,31 @@ class Server < ActiveRecord::Base
   validates :terminate_at, presence: true
   validate :terminate_at_must_be_in_future, on: :create
 
-  scope :not_terminated, -> { where('status in (?)', %w(pending running shutting-down stopping stopped)) }
+  scope :not_terminated, -> { where('status in (?)', NOT_TERMINATED_STATUSES) }
+
+  def launch!
+    begin
+      resp = aws_client.run_instances(
+        image_id: self.server_image.ami_id,
+        security_group_ids: [ self.security_group ],
+        instance_type: self.instance_type,
+        subnet_id: ENV['AWS_SUBNET'],
+        max_count: 1,
+        min_count: 1
+      )
+
+      if resp.instances.count == 1
+        instance = resp.instances.first
+        self.instance_id = instance.instance_id
+        self.save!
+      end
+    rescue StandardError => e
+      self.status = 'error_on_launch'
+      self.save!
+      Padrino.logger.error("Error al lanzar la instancia EC2: #{e.inspect}")
+      raise ErrorOnLaunch, e.inspect
+    end
+  end
 
   def refresh_status!
     resp = aws_client.describe_instances(instance_ids: [ self.instance_id ])
