@@ -1,8 +1,14 @@
 body {
   padding-top: 5rem;
 }
+
 main.container {
   padding: 3rem 1.5rem;
+}
+
+.navbar .navbar-brand .logo {
+  height: 45px;
+  margin-right: 20px;
 }
 
 .btn-facebook-login {
