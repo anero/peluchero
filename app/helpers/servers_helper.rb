@@ -7,7 +7,7 @@ module Peluchero
         client = Aws::EC2::Client.new(region: ENV['AWS_REGION'], credentials: Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_SECRET_ACCESS_KEY']))
         resp = client.describe_security_groups
 
-        resp.security_groups.map {|sg| [sg.group_name, sg.group_id] }
+        resp.security_groups.select {|sg| sg.vpc_id == ENV['AWS_VPC']}.map {|sg| [sg.group_name, sg.group_id] }
       end
 
       def instance_type_options
