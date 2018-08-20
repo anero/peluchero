@@ -2,5 +2,14 @@
   <td><%= server_image.name %></td>
   <td><%= server_image.ami_id %></td>
   <td><%= format_date(server_image.created_at) %></td>
-  <td><a class="btn btn-success" href="<%= url(:servers, :launch, server_image_id: server_image.id) %>">Lanzar instancia</a></td>
+  <td>
+    <div class="row mb-2">
+      <a class="btn btn-primary btn-sm" href="<%= url(:servers, :launch, server_image_id: server_image.id) %>">Lanzar instancia</a>
+    </div>
+    <div class="row">
+      <% form_tag(url(:server_images, :archive, id: server_image.id), method: 'put') do %>
+        <%= submit_tag 'Archivar', class: "btn btn-danger btn-sm" %>
+      <% end %>
+    </div>
+  </td>
 </tr>

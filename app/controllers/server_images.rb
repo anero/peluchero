@@ -6,7 +6,7 @@ Peluchero::App.controllers :server_images do
   end
 
   get :index do
-    @server_images = ServerImage.all.order('created_at DESC')
+    @server_images = ServerImage.live.order('created_at DESC')
     render 'server_images/index'
   end
 
@@ -17,5 +17,12 @@ Peluchero::App.controllers :server_images do
     else
       render 'new'
     end
+  end
+
+  put :archive, map: '/server_images/:id/archive' do
+    @server_image = ServerImage.find(params[:id])
+    @server_image.archive!
+
+    redirect url(:server_images, :index), success: 'Imagen archivada exitosamente'
   end
 end
