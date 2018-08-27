@@ -1,21 +1,21 @@
 <% if servers.empty? %>
   <p class="text-left">No hay ningún servidor corriendo.</p>
 <% else %>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Nombre de imagen</th>
-        <th>Estado</th>
-        <th>Última actualización</th>
-        <th>IP pública</th>
-        <th>ID de instancia</th>
-        <th>Fecha de terminación</th>
-        <th>Lanzado por</th>
-        <th>&nbsp;</th>
-      </tr>
-    </thead>
-    <tbody>
-      <%= partial 'servers/server', collection: servers %>
-    </tbody>
-  </table>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID de instancia</th>
+          <th>Nombre de imagen</th>
+          <th>Estado</th>
+          <th>IP pública</th>
+          <th>Fecha de terminación</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= partial 'servers/server', collection: servers %>
+      </tbody>
+    </table>
+  </div>
 <% end %>

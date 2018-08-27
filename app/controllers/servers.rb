@@ -4,6 +4,19 @@ Peluchero::App.controllers :servers do
     render 'servers/index'
   end
 
+  get :show, map: 'servers/:id' do
+    @server = Server.find(params[:id])
+    render 'servers/show'
+  end
+
+  put :refresh, map: 'servers/:id' do
+    @server = Server.find(params[:id])
+    @server.refresh_status!
+    flash[:success] = 'Estado de servidor actualizado'
+
+    render 'servers/show'
+  end
+
   get :launch do
     if params[:server_image_id].blank?
       halt 400, 'Missing server_image_id' and return
@@ -37,7 +50,7 @@ Peluchero::App.controllers :servers do
     end
   end
 
-  post :refresh do
+  post :refresh_all do
     Server.not_terminated.each {|s| s.refresh_status! }
 
     redirect '/', success: 'Estado de servidores actualizado'

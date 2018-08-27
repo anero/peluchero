@@ -1,0 +1,56 @@
+<h1><%= @server.instance_id %></h1>
+
+<table class="table mt-5 mb-5">
+  <tbody>
+    <tr>
+      <td>Estado:</td>
+      <td><%= t("models.server.statuses.#{@server.status}") %></td>
+    </tr>
+    <tr>
+      <td>Imagen:</td>
+      <td><%= @server.server_image.name %></td>
+    </tr>
+    <tr>
+      <td>Tipo de instancia:</td>
+      <td><%= @server.instance_type %></td>
+    </tr>
+    <tr>
+      <td>Security group:</td>
+      <td><%= @server.security_group %></td>
+    </tr>
+    <tr>
+      <td>IP pública:</td>
+      <td><%= format_server_public_ip(@server.public_ip) %></td>
+    </tr>
+    <tr>
+      <td>Lanzado por:</td>
+      <td><%= @server.launched_by&.name %></td>
+    </tr>
+    <tr>
+      <td>Fecha de terminación:</td>
+      <td><%= format_datetime(@server.terminate_at) %></td>
+    </tr>
+    <tr>
+      <td>Fecha de creación:</td>
+      <td><%= format_datetime(@server.created_at) %></td>
+    </tr>
+    <tr>
+      <td>Fecha de actualización:</td>
+      <td><%= format_datetime(@server.updated_at) %></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="row">
+  <% if can_be_terminated?(@server) %>
+    <div class="col">
+      <% form_tag(url(:servers, :terminate, id: @server.id), method: 'put') do %>
+        <%= submit_tag 'Terminar', class: "btn btn-danger" %>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="col">
+    <% form_tag(url_for(:servers, :refresh, id: @server.id), method: 'put') do %>
+      <button type="submit" class="btn btn-primary">Actualizar estado</button>
+    <% end %>
+  </div>

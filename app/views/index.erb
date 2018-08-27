@@ -1,8 +1,8 @@
 <h1>Servidores corriendo</h1>
 
 <div class="mt-3 mb-3 row clearfix">
-  <div class="col-4 offset-8 text-right">
-    <% form_tag  url_for(:servers, :refresh) do %>
+  <div class="col-4 offset-md-8 text-right">
+    <% form_tag  url_for(:servers, :refresh_all) do %>
       <button type="submit" class="btn btn-primary">Actualizar estado</button>
     <% end %>
   </div>
