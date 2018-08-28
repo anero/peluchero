@@ -4,12 +4,7 @@ Peluchero::App.controllers :servers do
     render 'servers/index'
   end
 
-  get :show, map: 'servers/:id' do
-    @server = Server.find(params[:id])
-    render 'servers/show'
-  end
-
-  put :refresh, map: 'servers/:id' do
+  put :refresh, map: 'servers/:id/refresh' do
     @server = Server.find(params[:id])
     @server.refresh_status!
     flash[:success] = 'Estado de servidor actualizado'
@@ -61,5 +56,10 @@ Peluchero::App.controllers :servers do
     @server.terminate!
 
     redirect '/', success: 'Apagando el servidor'
+  end
+
+  get :show, map: 'servers/:id' do
+    @server = Server.find(params[:id])
+    render 'servers/show'
   end
 end
