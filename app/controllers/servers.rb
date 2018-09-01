@@ -12,26 +12,29 @@ Peluchero::App.controllers :servers do
     render 'servers/show'
   end
 
-  get :launch do
-    if params[:server_image_id].blank?
-      halt 400, 'Missing server_image_id' and return
-    end
+  get :launch, parent: :game do
+    @game = Game.find(params[:game_id])
+    @server = @game.servers.build(server_image: @server_image, terminate_at: Time.zone.now + 4.hours, security_group: @game.preferred_security_group)
 
-    @server_image = ServerImage.find(params[:server_image_id])
-    @server = Server.new(server_image: @server_image, terminate_at: Time.zone.now + 4.hours)
+    # If present, use param from query string for setting the server image, otherwise use the latest available from game
+    if params[:server_image_id].present?
+      @server.server_image = ServerImage.find(params[:server_image_id])
+    else
+      @server.server_image = @game.server_images.order('server_images.created_at DESC').first
+    end
 
     render 'servers/launch'
   end
 
-  post :launch, map: '/servers/launch' do
-    @server_image = ServerImage.find(params[:server].delete(:server_image_id))
+  post :launch, parent: :game do
+    @game = Game.find(params[:game_id])
 
     terminate_at = params[:server].delete(:terminate_at)
     if terminate_at.present?
       terminate_at = Chronic.parse(terminate_at, { endian_precedence: [:little, :middle] }) # Parse string as date time to set correct time zone on Time object
     end
 
-    @server = @server_image.servers.build(params[:server].merge(status: 'pending', terminate_at: terminate_at, launched_by: current_account))
+    @server = @game.servers.build(params[:server].merge(status: 'pending', terminate_at: terminate_at, launched_by: current_account))
 
     if @server.save
       begin

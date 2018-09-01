@@ -23,7 +23,13 @@ class Server < ActiveRecord::Base
         instance_type: self.instance_type,
         subnet_id: ENV['AWS_SUBNET'],
         max_count: 1,
-        min_count: 1
+        min_count: 1,
+        tag_specifications: [
+          {
+            resource_type: "instance",
+            tags: game.tags_for_new_servers,
+          },
+        ],
       )
 
       if resp.instances.count == 1

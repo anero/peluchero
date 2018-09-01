@@ -18,4 +18,9 @@ Peluchero::App.controllers :games do
       render 'games/new'
     end
   end
+
+  get :show, map: 'games/:id' do
+    @game = Game.find(params[:id])
+    render 'games/show'
+  end
 end

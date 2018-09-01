@@ -1,0 +1,21 @@
+<% if server_images.empty? %>
+  <p class="text-left">No hay ninguna imagen registrada.</p>
+<% else %>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nombre de imagen</th>
+          <% if include_game_info %>
+            <th>Juego</th>
+          <% end %>
+          <th>AMI ID</th>
+          <th>Fecha creación</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= partial 'server_images/server_image', collection: server_images.live, locals: {include_game_info: include_game_info} %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

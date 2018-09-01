@@ -1,5 +1,5 @@
 <tr>
-  <td><%= game.name %></td>
+  <td><a href="<%= url(:games, :show, id: game.id) %>"><%= game.name %></a></td>
   <td><%= format_date(game.created_at) %></td>
   <td>&nbsp;</td>
 </tr>

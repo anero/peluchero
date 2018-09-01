@@ -6,6 +6,9 @@
       <thead>
         <tr>
           <th>ID de instancia</th>
+          <% if include_game_info %>
+            <th>Juego</th>
+          <% end %>
           <th>Nombre de imagen</th>
           <th>Estado</th>
           <th>IP pública</th>
@@ -14,7 +17,7 @@
         </tr>
       </thead>
       <tbody>
-        <%= partial 'servers/server', collection: servers %>
+        <%= partial 'servers/server', collection: servers, locals: {include_game_info: include_game_info} %>
       </tbody>
     </table>
   </div>

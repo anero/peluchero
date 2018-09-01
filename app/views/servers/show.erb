@@ -3,6 +3,10 @@
 <table class="table mt-5 mb-5">
   <tbody>
     <tr>
+      <td>Juego</td>
+      <td><%= @server.game.name %></td>
+    </tr>
+    <tr>
       <td>Estado:</td>
       <td><%= t("models.server.statuses.#{@server.status}") %></td>
     </tr>

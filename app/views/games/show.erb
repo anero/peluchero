@@ -1,0 +1,20 @@
+<h1 class="mb-5"><%= @game.name %></h1>
+
+<h2>Servidores</h2>
+
+<div class="col-4 offset-md-8 text-right mb-3">
+  <a href="<%= url(:servers, :launch, game_id: @game) %>" type="submit" class="btn btn-primary">Crear servidor</a>
+</div>
+
+<%= partial 'servers/table', locals: { servers: @game.servers.not_terminated, include_game_info: false } %>
+
+
+<h2 class="mt-5">Imagenes</h2>
+
+<div class="col-4 offset-md-8 text-right mb-3">
+  <% form_tag url_for(:server_images, :import, game_id: @game) do %>
+    <button type="submit" class="btn btn-primary">Actualizar desde AWS</button>
+  <% end %>
+</div>
+
+<%= partial 'server_images/table', locals: {server_images: @game.server_images, include_game_info: false} %>

@@ -14,6 +14,10 @@ module Peluchero
         [ 't2.micro', 't2.small', 't2.medium', 't2.large', 't2.xlarge' ]
       end
 
+      def server_image_options(server_images)
+        server_images.map {|si| [si.name, si.id] }
+      end
+
       def format_server_public_ip(public_ip)
         public_ip || 'No asignada aún'
       end

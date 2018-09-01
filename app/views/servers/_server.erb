@@ -1,10 +1,12 @@
 <tr>
   <td><a href="<%= url(:servers, :show, id: server.id) %>"><%= server.instance_id %></a></td>
+  <% if include_game_info %>
+    <td><a href="<%= url(:games, :show, id: server.game) %>"><%= server.game.name %></td>
+  <% end %>
   <td><%= server.server_image.name %></td>
   <td><%= t("models.server.statuses.#{server.status}") %></td>
   <td><%= format_server_public_ip(server.public_ip) %></td>
   <td><%= format_datetime(server.terminate_at) %></td>
-  <td><%= server.launched_by&.name %></td>
   <td>
     <% if can_be_terminated?(server) %>
       <% form_tag(url(:servers, :terminate, id: server.id), method: 'put') do %>
