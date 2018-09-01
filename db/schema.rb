@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 10) do
+ActiveRecord::Schema.define(version: 13) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "games", force: :cascade do |t|
+    t.string   "name"
+    t.string   "preferred_security_group"
+    t.string   "tag"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "server_images", force: :cascade do |t|
     t.string   "ami_id",      null: false
@@ -21,7 +29,10 @@ ActiveRecord::Schema.define(version: 10) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.datetime "archived_at"
+    t.integer  "game_id"
   end
+
+  add_index "server_images", ["game_id"], name: "index_server_images_on_game_id", using: :btree
 
   create_table "servers", force: :cascade do |t|
     t.string   "instance_id"
@@ -34,7 +45,10 @@ ActiveRecord::Schema.define(version: 10) do
     t.string   "public_ip"
     t.datetime "terminate_at"
     t.integer  "user_id"
+    t.integer  "game_id"
   end
+
+  add_index "servers", ["game_id"], name: "index_servers_on_game_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name",                                 null: false

@@ -8,30 +8,31 @@
     </div>
 
     <div class="row">
-      <div class="col-6">
-      <div class="form-group">
-        <%= f.label :instance_type %>
-        <%= f.select :instance_type, options: instance_type_options, class: "form-control" %>
-      </div>
-
-      <div class="card mb-4">
-        <div class="card-body">
-          Las características y costos de los tipos de instancias están disponibles en
-          la página de <a href="https://aws.amazon.com/es/ec2/pricing/on-demand/?nc1=h_ls">Precios de Amazon EC2</a>
+      <div class="col-xs col-sm-8">
+        <div class="form-group">
+          <%= f.label :instance_type %>
+          <%= f.select :instance_type, options: instance_type_options, class: "form-control" %>
         </div>
-      </div>
 
-      <div class="form-group mb-5">
-        <%= f.label :security_group %>
-        <%= f.select :security_group, options: security_group_options, class: "form-control" %>
-      </div>
+        <div class="card mb-4">
+          <div class="card-body">
+            Las características y costos de los tipos de instancias están disponibles en
+            la página de <a href="https://aws.amazon.com/es/ec2/pricing/on-demand/?nc1=h_ls">Precios de Amazon EC2</a>
+          </div>
+        </div>
 
-      <div class="form-group">
-        <%= f.label :terminate_at %>
-        <%= f.text_field :terminate_at, class: 'form-control datetime', value: format_date_for_control(@server.terminate_at) %>
-      </div>
+        <div class="form-group mb-5">
+          <%= f.label :security_group %>
+          <%= f.select :security_group, options: security_group_options, class: "form-control" %>
+        </div>
 
-      <%= f.submit 'Lanzar', class: 'btn btn-primary' %>
+        <div class="form-group">
+          <%= f.label :terminate_at %>
+          <%= f.text_field :terminate_at, class: 'form-control datetime', value: format_date_for_control(@server.terminate_at) %>
+        </div>
+
+        <%= f.submit 'Lanzar', class: 'btn btn-primary' %>
+      </div>
     </div>
   <% end %>
 </div>

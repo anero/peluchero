@@ -1,0 +1,24 @@
+<h1>Juegos</h1>
+
+<div class="row mb-5 float-right">
+  <a class="btn btn-primary" href="<%= url(:games, :new) %>">Nuevo juego</a>
+</div>
+
+<% if @games.empty? %>
+  <p class="text-left">No hay ningún juego registrado.</p>
+<% else %>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Fecha creación</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= partial 'games/game', collection: @games %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

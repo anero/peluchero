@@ -6,6 +6,7 @@ class Server < ActiveRecord::Base
 
   belongs_to :server_image
   belongs_to :launched_by, class_name: 'User', foreign_key: 'user_id'
+  belongs_to :game
 
   validates :instance_id, uniqueness: true, allow_blank: true
   validates :status, inclusion: { in: STATUSES }

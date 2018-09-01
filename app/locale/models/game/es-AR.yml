@@ -1,0 +1,8 @@
+es-AR:
+  models:
+    game:
+      name: Juego
+      attributes:
+        name: Nombre
+        preferred_security_group: Security group default
+        tag: Etiqueta
