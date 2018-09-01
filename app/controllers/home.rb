@@ -5,4 +5,8 @@ Peluchero::App.controllers do
 
     render 'index'
   end
+
+  get :admin do
+    render 'admin'
+  end
 end
