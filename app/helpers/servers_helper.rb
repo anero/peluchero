@@ -11,7 +11,7 @@ module Peluchero
       end
 
       def instance_type_options
-        [ 't2.micro', 't2.small', 't2.medium', 't2.large', 't2.xlarge' ]
+        [ 't3.micro', 't3.small', 't3.medium', 't3.large', 't3.xlarge', 't3.2xlarge' ]
       end
 
       def server_image_options(server_images)
