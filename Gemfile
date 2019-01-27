@@ -27,6 +27,9 @@ gem 'aws-sdk-ec2', '~> 1'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
+# Maintenance
+gem 'sentry-raven'
+
 group :development do
   gem 'byebug'
 end

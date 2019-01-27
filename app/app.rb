@@ -38,5 +38,11 @@ module Peluchero
         redirect request.url.sub('http', 'https') unless request.secure?
       end
     end
+
+    before do
+      unless current_account.nil?
+        Raven.user_context(id: current_account.id, email: current_account.email)
+      end
+    end
   end
 end

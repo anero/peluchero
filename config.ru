@@ -6,4 +6,11 @@
 
 require File.expand_path("../config/boot.rb", __FILE__)
 
+# Sentry setup
+require 'raven'
+Raven.configure do |config|
+  config.dsn = ENV['SENTRY_DSN']
+end
+use Raven::Rack
+
 run Padrino.application
