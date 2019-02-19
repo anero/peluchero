@@ -37,12 +37,8 @@ Peluchero::App.controllers :servers do
     @server = @game.servers.build(params[:server].merge(status: 'pending', terminate_at: terminate_at, launched_by: current_account))
 
     if @server.save
-      begin
-        @server.launch!
-        redirect '/', success: 'El servidor se lanzó correctamente'
-      rescue Server::ErrorOnLaunch
-        redirect '/', error: 'Error al lanzar el servidor'
-      end
+      @server.launch!
+      redirect '/', success: 'El servidor se lanzó correctamente'
     else
       render 'servers/launch'
     end
