@@ -15,7 +15,7 @@ module Peluchero
       end
 
       def server_image_options(server_images)
-        server_images.map {|si| [si.name, si.id] }
+        server_images.map {|si| [name_and_description(si), si.id] }
       end
 
       def format_server_public_ip(public_ip)

@@ -12,7 +12,7 @@ class Game < ActiveRecord::Base
       amis.each do |ami|
         existing_server_image = server_images.where(ami_id: ami.image_id).first
         if existing_server_image.nil?
-          server_images.create(ami_id: ami.image_id, name: ami.name)
+          server_images.create(ami_id: ami.image_id, name: ami.name, description: ami.description)
         end
       end
     end
