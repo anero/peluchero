@@ -1,4 +1,8 @@
 Peluchero::App.controllers :games do
+  before :edit, :update, :show do
+    @game = Game.find(params[:id])
+  end
+
   get :index do
     @games = Game.all
     render 'games/index'
@@ -19,8 +23,20 @@ Peluchero::App.controllers :games do
     end
   end
 
+  get :edit, with: [:id] do
+    render 'games/edit'
+  end
+
+  put :update, with: [:id] do
+    if @game.update_attributes(params[:game])
+      redirect url(:games, :index), success: 'Juego actualizado exitosamente'
+    else
+      flash[:alert] = 'No se pudo actualizar el juego'
+      render 'games/edit'
+    end
+  end
+
   get :show, map: 'games/:id' do
-    @game = Game.find(params[:id])
     render 'games/show'
   end
 end

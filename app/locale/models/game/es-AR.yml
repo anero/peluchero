@@ -4,5 +4,8 @@ es-AR:
       name: Juego
       attributes:
         name: Nombre
-        preferred_security_group: Security group default
+        preferred_security_group: Security Group por defecto
         tag: Etiqueta
+        iam_instance_profile_name: Perfil de instancia IAM
+      errors:
+        iam_instance_profile_not_found: No se encontró el perfil de instancia IAM en AWS

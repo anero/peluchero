@@ -24,6 +24,7 @@ class Server < ActiveRecord::Base
         subnet_id: ENV['AWS_SUBNET'],
         max_count: 1,
         min_count: 1,
+        iam_instance_profile: { name: game.iam_instance_profile_name },
         tag_specifications: [
           {
             resource_type: "instance",
@@ -64,7 +65,7 @@ class Server < ActiveRecord::Base
   end
 
   def terminate!
-    resp = aws_client.terminate_instances(instance_ids: [ self.instance_id ])
+    aws_client.terminate_instances(instance_ids: [ self.instance_id ])
   end
 
   def terminated?

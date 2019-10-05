@@ -1,5 +1,5 @@
 <tr>
   <td><a href="<%= url(:games, :show, id: game.id) %>"><%= game.name %></a></td>
   <td><%= format_date(game.created_at) %></td>
-  <td>&nbsp;</td>
+  <td><a href="<%= url(:games, :edit, id: game.id) %>" class="btn btn-secondary" role="button"><%= t('administrative.edit') %></a></td>
 </tr>

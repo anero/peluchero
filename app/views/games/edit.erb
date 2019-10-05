@@ -1,0 +1,3 @@
+<h1>Editar <%= @game.name %></h1>
+
+<%= partial 'form', locals: {game: @game, url: url(:games, :update, id: @game.id), method: 'put' } %>

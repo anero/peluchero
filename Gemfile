@@ -22,6 +22,7 @@ gem 'padrino', '0.14.3'
 
 # AWS
 gem 'aws-sdk-ec2', '~> 1'
+gem 'aws-sdk-iam', '~> 1'
 
 # AuthN
 gem 'omniauth'
