@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Peluchero::App.controllers :servers do
   get :index do
     @servers = Server.all.order('updated_at DESC')

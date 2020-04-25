@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 desc "Terminar instancias que tengan fecha de expiración cumplida"
 task terminate_scheduled_instances: :environment do
   Padrino.logger.info("*** Corriendo el proceso de expiración de instancias ***")

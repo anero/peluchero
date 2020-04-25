@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Peluchero::App.controllers :users do
   get :index do
     @users = User.all

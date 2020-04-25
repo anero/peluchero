@@ -27,6 +27,8 @@ gem 'aws-sdk-ec2', '~> 1'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
+gem 'discordrb'
+
 # Maintenance
 gem 'sentry-raven'
 
