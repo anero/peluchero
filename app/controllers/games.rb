@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Peluchero::App.controllers :games do
   get :index do
     @games = Game.all

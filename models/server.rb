@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Server < ActiveRecord::Base
   class ErrorOnLaunch < StandardError; end;
 

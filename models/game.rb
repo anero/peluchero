@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Game < ActiveRecord::Base
   has_many :server_images
   has_many :servers

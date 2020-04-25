@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Peluchero::App.controllers :server_images do
   get :index do
     @server_images = ServerImage.live.order('created_at DESC')

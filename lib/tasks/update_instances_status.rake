@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 desc "Actualizar estado de instancias corriendo"
 task update_instances_status: :environment do
   Padrino.logger.info("*** Corriendo el proceso de actualización de estado de instancias ***")

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Peluchero
   class App < Padrino::Application
     use ConnectionPoolManagement

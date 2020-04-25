@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Peluchero::App.controllers :sessions do
   get :new do
     render 'new'
