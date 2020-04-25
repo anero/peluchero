@@ -27,6 +27,7 @@ gem 'aws-sdk-ec2', '~> 1'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
+gem 'rbnacl', '~> 7.1'
 gem 'discordrb'
 
 # Maintenance
