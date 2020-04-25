@@ -28,7 +28,7 @@ class Server < ActiveRecord::Base
         min_count: 1,
         tag_specifications: [
           {
-            resource_type: "instance",
+            resource_type: 'instance',
             tags: game.tags_for_new_servers,
           },
         ],
@@ -37,12 +37,15 @@ class Server < ActiveRecord::Base
       if resp.instances.count == 1
         instance = resp.instances.first
         self.instance_id = instance.instance_id
-        self.save!
+        save!
       end
     rescue StandardError => e
       self.status = 'error_on_launch'
-      self.save!
+      save!
+
+      discord_bot.send_message(I18n.t("models.server.discord_messages.#{self.status}"))
       Padrino.logger.error("Error al lanzar la instancia EC2: #{e.inspect}")
+
       raise ErrorOnLaunch, e.inspect
     end
   end
@@ -63,10 +66,12 @@ class Server < ActiveRecord::Base
     end
 
     save!
+
+    discord_bot.send_message(I18n.t("models.server.discord_messages.#{self.status}", ip_address: self.public_ip))
   end
 
   def terminate!
-    resp = aws_client.terminate_instances(instance_ids: [ self.instance_id ])
+    aws_client.terminate_instances(instance_ids: [ self.instance_id ])
   end
 
   def terminated?
@@ -79,6 +84,10 @@ class Server < ActiveRecord::Base
     @__aws_client ||= Aws::EC2::Client.new(region: ENV['AWS_REGION'], credentials: Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_SECRET_ACCESS_KEY']))
 
     @__aws_client
+  end
+
+  def discord_bot
+    @__discord_bot ||= DiscordBot.new
   end
 
   def terminate_at_must_be_in_future
