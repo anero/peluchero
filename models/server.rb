@@ -65,9 +65,13 @@ class Server < ActiveRecord::Base
       self.public_ip = instance_info.network_interfaces[0].association.public_ip
     end
 
+    notify_discord = self.status_changed? || self.public_ip_changed?
+
     save!
 
-    discord_bot.send_message(I18n.t("models.server.discord_messages.#{self.status}", ip_address: self.public_ip))
+    if notify_discord
+      discord_bot.send_message(I18n.t("models.server.discord_messages.#{self.status}", ip_address: self.public_ip))
+    end
   end
 
   def terminate!
