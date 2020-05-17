@@ -23,10 +23,10 @@ es-AR:
         stopped: Apagado
         terminated: Terminado
       discord_messages:
-        pending : Iniciando servidor en %{ip_address}
-        running: El servidor está corriendo en %{ip_address}
-        shutting-down: Apagando servidor
-        stopping: Parando servidor
-        stopped: Servidor parado
-        terminated: Servidor apagado
-        error_on_launch: Error al iniciar el servidor
+        pending : Iniciando servidor de %{game_name} en %{ip_address}
+        running: El servidor de %{game_name} está corriendo en %{ip_address}
+        shutting-down: Apagando servidor de %{game_name}
+        stopping: Parando servidor de %{game_name}
+        stopped: Servidor de %{game_name} parado
+        terminated: Servidor de %{game_name} apagado
+        error_on_launch: Error al iniciar el servidor de %{game_name}

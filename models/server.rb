@@ -43,7 +43,7 @@ class Server < ActiveRecord::Base
       self.status = 'error_on_launch'
       save!
 
-      discord_bot.send_message(I18n.t("models.server.discord_messages.#{self.status}"))
+      discord_bot.send_message(I18n.t("models.server.discord_messages.#{self.status}", game_name: self.game.name))
       Padrino.logger.error("Error al lanzar la instancia EC2: #{e.inspect}")
 
       raise ErrorOnLaunch, e.inspect
@@ -70,7 +70,7 @@ class Server < ActiveRecord::Base
     save!
 
     if notify_discord
-      discord_bot.send_message(I18n.t("models.server.discord_messages.#{self.status}", ip_address: self.public_ip))
+      discord_bot.send_message(I18n.t("models.server.discord_messages.#{self.status}", game_name: self.game.name, ip_address: self.public_ip))
     end
   end
 
