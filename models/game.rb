@@ -9,12 +9,14 @@ class Game < ActiveRecord::Base
   validates :tag, presence: true
 
   def refresh_status!
-    amis = aws_client.describe_images(filters: [{ name: "tag:game", values: [ self.tag ] }, { name:'tag:managed_by', values: ['peluchero']}]).try(:images) || []
+    amis = aws_client.describe_images(filters: [{ name: 'tag:game', values: [ self.tag ] }, { name:'tag:managed_by', values: ['peluchero']}]).try(:images) || []
     if amis.any?
       amis.each do |ami|
         existing_server_image = server_images.where(ami_id: ami.image_id).first
         if existing_server_image.nil?
           server_images.create(ami_id: ami.image_id, name: ami.name, description: ami.description)
+        elsif existing_server_image.archived_at.present?
+          existing_server_image.update_attributes(archived_at: nil)
         end
       end
     end
@@ -22,12 +24,12 @@ class Game < ActiveRecord::Base
     # Archive deregistered AMIs
     existing_amis = amis.map(&:image_id)
     server_images
-      .select {|si| !existing_amis.include?(si.ami_id) }
-      .map {|si| si.archive! }
+      .reject { |si| existing_amis.include?(si.ami_id) }
+      .map(&:archive!)
   end
 
   def tags_for_new_servers
-    tags_for_ec2_instace = [
+    [
       { key: 'managed_by', value: 'peluchero' },
       { key: 'game', value: self.tag }
     ]
