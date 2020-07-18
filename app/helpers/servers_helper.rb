@@ -13,7 +13,7 @@ module Peluchero
       end
 
       def instance_type_options
-        [ 'm5.large', 't3.micro', 't3.small', 't3.medium', 't3.large', 't3.xlarge', 't3.2xlarge' ]
+        [ 'm5.large', 't3.micro', 't3.small', 't3.medium' ].freeze
       end
 
       def server_image_options(server_images)
