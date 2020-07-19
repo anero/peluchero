@@ -1,0 +1,30 @@
+<% form_for(game, form_url, method: form_method) do |f| %>
+  <%= f.error_messages %>
+
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :preferred_security_group %>
+    <%= f.select :preferred_security_group, options: security_group_options, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :server_iam_role %>
+    <%= f.text_field :server_iam_role, class: "form-control" %>
+  </div>
+
+  <div class="form-group mb-2">
+    <%= f.label :tag %>
+    <%= f.text_field :tag, class: "form-control" %>
+  </div>
+  <div class="card mb-5">
+    <div class="card-body">
+      La etiqueta se usa internamente para identificar los recursos en AWS.
+    </div>
+  </div>
+
+  <%= f.submit submit_label, class: 'btn btn-primary' %>
+<% end %>

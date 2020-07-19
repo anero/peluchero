@@ -7,6 +7,7 @@ class Game < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
   validates :preferred_security_group, presence: true
   validates :tag, presence: true
+  validates :server_iam_role, presence: true
 
   def refresh_status!
     amis = aws_client.describe_images(filters: [{ name: 'tag:game', values: [ self.tag ] }, { name:'tag:managed_by', values: ['peluchero']}]).try(:images) || []

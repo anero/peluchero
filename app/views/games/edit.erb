@@ -1,0 +1,7 @@
+<h1>Editar <%= @game.name %></h1>
+
+<div class="row">
+  <div class="col-xs col-sm-8">
+    <%= partial 'games/form', locals: { game: @game, form_url: url(:games, :update, id: @game.id), submit_label: 'Actualizar', form_method: :put } %>
+  </div>
+</div>

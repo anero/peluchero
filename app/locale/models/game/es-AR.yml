@@ -5,4 +5,5 @@ es-AR:
       attributes:
         name: Nombre
         preferred_security_group: Security group default
+        server_iam_role: ARN del perfil para instancias
         tag: Etiqueta

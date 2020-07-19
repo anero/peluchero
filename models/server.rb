@@ -24,6 +24,9 @@ class Server < ActiveRecord::Base
         security_group_ids: [ self.security_group ],
         instance_type: self.instance_type,
         subnet_id: ENV['AWS_SUBNET'],
+        iam_instance_profile: {
+          arn: game.server_iam_role
+        },
         max_count: 1,
         min_count: 1,
         tag_specifications: [

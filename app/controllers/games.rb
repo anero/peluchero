@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 Peluchero::App.controllers :games do
+  before :show, :edit, :update do
+    @game = Game.find(params[:id])
+  end
+
   get :index do
     @games = Game.all
     render 'games/index'
@@ -21,8 +25,21 @@ Peluchero::App.controllers :games do
     end
   end
 
-  get :show, map: 'games/:id' do
-    @game = Game.find(params[:id])
+  get :edit, with: :id do
+    render 'games/edit'
+  end
+
+  put :update, with: :id do
+    @game.assign_attributes(params[:game])
+
+    if @game.save
+      redirect url(:games, :index), success: 'Juego actualizado exitosamente'
+    else
+      render url(:games, :edit, id: @game.id)
+    end
+  end
+
+  get :show, with: :id do
     render 'games/show'
   end
 end
