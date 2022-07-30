@@ -14,7 +14,7 @@ gem 'dotenv'
 gem 'chronic'
 
 # Component requirements
-gem 'activerecord', '~> 4', require: 'active_record'
+gem 'activerecord', '~> 5', require: 'active_record'
 gem 'pg', '~> 0.18'
 
 # Padrino Stable Gem
